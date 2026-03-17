@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { AppContextProvider } from "@/context/AppContext";
-import { ClerkProvider } from "@clerk/nextjs";
+import "../../app/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Learning Management System",
+  title: "Educator Home",
   description: "Learning Management System",
 };
 
@@ -25,14 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AppContextProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <ClerkProvider afterSignOutUrl="/">{children}</ClerkProvider>
-        </body>
-      </html>
-    </AppContextProvider>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#141117]`}
+      >
+        {children}
+      </body>
+    </html>
   );
 }
