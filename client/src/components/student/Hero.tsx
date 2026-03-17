@@ -17,7 +17,7 @@ const roles = [
   "Content Writer",
   "Motion Designer",
   "Backend Dev",
-];
+] as const;
 
 const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -174,14 +174,24 @@ const Hero = () => {
 };
 
 /* ── Blob Frame ─────────────────────────────────────── */
-const CLIPS: any = {
+const CLIPS: Record<"flower" | "hourglass", string> = {
   flower:
     "polygon(50% 0%, 61% 15%, 79% 9%, 79% 28%, 96% 35%, 88% 52%, 98% 67%, 82% 70%, 79% 89%, 62% 84%, 50% 98%, 38% 84%, 21% 89%, 18% 70%, 2% 67%, 12% 52%, 4% 35%, 21% 28%, 21% 9%, 39% 15%)",
   hourglass:
     "polygon(15% 0%, 85% 0%, 100% 20%, 80% 50%, 100% 80%, 85% 100%, 15% 100%, 0% 80%, 20% 50%, 0% 20%)",
 };
 
-function BlobFrame({ color, shape, style, imgSrc }: any) {
+function BlobFrame({
+  color,
+  shape,
+  style,
+  imgSrc,
+}: {
+  color: string;
+  shape: keyof typeof CLIPS;
+  style: React.CSSProperties;
+  imgSrc: string;
+}) {
   return (
     <div
       style={{

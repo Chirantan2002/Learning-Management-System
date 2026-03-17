@@ -3,14 +3,14 @@ import Navbar from "@/components/student/Navbar";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const Page = () => {
   const pathname = usePathname();
   const isEducatorRoute = pathname.includes("/educator/*");
   return (
     <div className="min-h-screen">
-      {!isEducatorRoute && <Navbar/>}
+      {!isEducatorRoute && <Navbar />}
     </div>
   );
 };
 
-export default page;
+export default Page;
