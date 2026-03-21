@@ -18,7 +18,7 @@ const connectDB = async () => {
       console.log("MongoDB disconnected");
     });
 
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(`${process.env.MONGODB_URI}/lms`);
   } catch (err) {
     console.log("Database connection failed", err);
     process.exit(1); // stops the app if DB fails

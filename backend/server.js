@@ -1,6 +1,6 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import "dotenv/config";
 import connectDB from "./configs/mongodb.js";
 import { clerkWebhook } from "./controllers/webhook.js";
 
@@ -11,6 +11,7 @@ const app = express();
 
 // MIDDLEWARE
 app.use(cors());
+app.post("/clerk", express.raw({ type: "*/*" }), clerkWebhook);
 app.use(express.json());
 
 // DEFAULT ROUTE
@@ -22,8 +23,6 @@ app.get("/", (req, res) => {
 app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Server is running fine" });
 });
-
-app.post("/clerk", express.raw({ type: "*/*" }), clerkWebhook);
 
 // CONNECT DB
 try {
