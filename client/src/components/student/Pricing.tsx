@@ -1,6 +1,19 @@
 "use client";
+import { Montserrat } from "next/font/google";
+import { FaFireFlameCurved } from "react-icons/fa6";
 
-const plans = [
+const montserrat = Montserrat({ subsets: ["latin"] });
+
+type Plans = {
+  name: string;
+  price: string;
+  note: string;
+  features: string[];
+  cta: string;
+  highlighted: boolean;
+};
+
+const plans: Plans[] = [
   {
     name: "Starter",
     price: "Free",
@@ -39,7 +52,7 @@ const plans = [
     cta: "Contact sales",
     highlighted: false,
   },
-] as const;
+];
 
 export default function Pricing() {
   return (
@@ -49,9 +62,11 @@ export default function Pricing() {
           <p className="text-xs font-semibold tracking-wider text-white/60">
             PRICING
           </p>
-          <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Choose a plan that fits your{" "}
-            <span className="text-[#a855fe]">learning</span>
+          <h2 className="mt-2 text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            <span className="font-serif">Choose a plan that fits your </span>
+            <span className={`${montserrat.className} text-[#a855fe]`}>
+              learning
+            </span>
           </h2>
           <p className="mt-2 text-white/60 max-w-2xl mx-auto">
             Simple pricing. Cancel anytime. Upgrade when you’re ready.
@@ -65,7 +80,7 @@ export default function Pricing() {
               className={[
                 "rounded-3xl border p-6 sm:p-7 bg-white/5",
                 p.highlighted
-                  ? "border-[#a855fe]/45 bg-gradient-to-b from-[#a855fe]/15 to-white/5"
+                  ? "border-[#a855fe]/45 bg-linear-to-b from-[#a855fe]/15 to-white/5"
                   : "border-white/10",
               ].join(" ")}
             >
@@ -75,8 +90,9 @@ export default function Pricing() {
                   <p className="text-white/60 text-sm mt-1">{p.note}</p>
                 </div>
                 {p.highlighted && (
-                  <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#a855fe]/20 border border-[#a855fe]/30 text-white">
-                    Popular
+                  <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#a855fe]/20 border border-[#a855fe]/30 text-white flex items-center gap-2">
+                    Popular{" "}
+                    <FaFireFlameCurved size={14} className="animate-pulse" />
                   </span>
                 )}
               </div>
@@ -116,4 +132,3 @@ export default function Pricing() {
     </section>
   );
 }
-

@@ -1,6 +1,16 @@
 "use client";
+import { Montserrat } from "next/font/google";
 
-const mentors = [
+const montserrat = Montserrat({ subsets: ["latin"] });
+
+type Mentor = {
+  name: string;
+  role: string;
+  img: string;
+  featured?: boolean;
+};
+
+const mentors: Mentor[] = [
   {
     name: "Jessica Miller",
     role: "UI/UX Design & Research",
@@ -13,7 +23,7 @@ const mentors = [
     img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=500&fit=crop&crop=face",
   },
   {
-    name: "Kabir Singh",
+    name: "Angela Wu",
     role: "Backend Engineer",
     img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=500&fit=crop&crop=face",
   },
@@ -32,7 +42,7 @@ const mentors = [
     role: "Product Manager",
     img: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=500&h=500&fit=crop&crop=face",
   },
-] as const;
+];
 
 export default function Mentors() {
   return (
@@ -42,13 +52,20 @@ export default function Mentors() {
           <p className="text-xs font-semibold tracking-wider text-white/60">
             Meet Our Expert Mentors
           </p>
-          <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-serif tracking-tight">
-            Learn from Industry Leaders <br className="hidden sm:block" />& Top
-            Creators
+          <h2 className="mt-3 text-4xl md:text-5xl font-extrabold text-white font-serif tracking-tight">
+            Learn from Industry{" "}
+            <span className={`${montserrat.className} text-[#a855fe]`}>
+              Leaders
+            </span>{" "}
+            <br className="hidden sm:block" />& Top
+            <span className={`${montserrat.className} text-[#a855fe]`}>
+              {" "}
+              Creators
+            </span>
           </h2>
           <p className="mt-3 text-white/55 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Gain expert insights and hands-on guidance from professionals working
-            across design, engineering, and product.
+            Gain expert insights and hands-on guidance from professionals
+            working across design, engineering, and product.
           </p>
         </div>
 
@@ -61,7 +78,7 @@ export default function Mentors() {
                 m.featured ? "bg-[#d8b4fe]/15" : "bg-white/5",
               ].join(" ")}
             >
-              <div className="relative aspect-[4/5]">
+              <div className="relative aspect-4/5">
                 <img
                   src={m.img}
                   alt={m.name}
@@ -71,13 +88,15 @@ export default function Mentors() {
                   ].join(" ")}
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
               </div>
               <div className="p-3 sm:p-4">
                 <p className="text-white font-semibold text-sm sm:text-base">
                   {m.name}
                 </p>
-                <p className="text-white/55 text-xs sm:text-sm mt-1">{m.role}</p>
+                <p className="text-white/55 text-xs sm:text-sm mt-1">
+                  {m.role}
+                </p>
               </div>
             </div>
           ))}
@@ -86,4 +105,3 @@ export default function Mentors() {
     </section>
   );
 }
-

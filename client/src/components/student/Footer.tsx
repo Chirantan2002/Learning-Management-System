@@ -18,10 +18,16 @@ export default function Footer() {
           <div>
             <p className="text-white/80 font-semibold">Explore</p>
             <div className="mt-3 flex flex-col gap-2 text-sm text-white/60">
-              <Link className="hover:text-white transition-colors" href="/course-list">
+              <Link
+                className="hover:text-white transition-colors"
+                href="/course-list"
+              >
                 Courses
               </Link>
-              <Link className="hover:text-white transition-colors" href="/student">
+              <Link
+                className="hover:text-white transition-colors"
+                href="/student"
+              >
                 Student
               </Link>
               <Link
@@ -63,14 +69,12 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} Learning Management System. All rights reserved.
+            © {new Date().getFullYear()} Learning Management System. All rights
+            reserved.
           </p>
-          <p className="text-white/50 text-sm">
-            Built with Next.js + Tailwind
-          </p>
+          <p className="text-white/50 text-sm">Built with Next.js + Tailwind</p>
         </div>
       </div>
     </footer>
   );
 }
-

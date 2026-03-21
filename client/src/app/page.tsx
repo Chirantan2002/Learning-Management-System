@@ -10,7 +10,6 @@ import Pricing from "@/components/student/Pricing";
 import FAQ from "@/components/student/FAQ";
 import Footer from "@/components/student/Footer";
 import { usePathname } from "next/navigation";
-import React from "react";
 
 const Page = () => {
   const pathname = usePathname();

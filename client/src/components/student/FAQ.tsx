@@ -31,9 +31,8 @@ export default function FAQ() {
           <p className="text-xs font-semibold tracking-wider text-white/60">
             FAQ
           </p>
-          <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Questions?{" "}
-            <span className="text-[#a855fe]">We’ve got answers</span>
+          <h2 className="mt-2 font-serif text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Questions? <span className="text-[#a855fe]">We’ve got answers</span>
           </h2>
           <p className="mt-2 text-white/60">
             Everything you need to know to get started.
@@ -69,4 +68,3 @@ export default function FAQ() {
     </section>
   );
 }
-

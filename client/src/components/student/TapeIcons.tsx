@@ -11,15 +11,17 @@ const logos = [
   "Shopify",
   "Atlassian",
   "Slack",
-] as const;
+];
 
-function LogoPill({ label }: { label: string }) {
+const duplicatedLogos = [...logos, ...logos];
+
+const LogoPill = ({ label }: { label: string }) => {
   return (
     <div className="shrink-0 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70">
       {label}
     </div>
   );
-}
+};
 
 export default function TapeIcons() {
   return (
@@ -34,11 +36,11 @@ export default function TapeIcons() {
 
         <div className="mt-5 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0f0e11] to-transparent z-10" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0f0e11] to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-linear-to-r from-[#0f0e11] to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-[#0f0e11] to-transparent z-10" />
 
             <div className="flex gap-3 py-4 px-4 animate-[marquee_22s_linear_infinite] w-max">
-              {[...logos, ...logos].map((l, idx) => (
+              {duplicatedLogos.map((l, idx) => (
                 <LogoPill key={`${l}-${idx}`} label={l} />
               ))}
             </div>

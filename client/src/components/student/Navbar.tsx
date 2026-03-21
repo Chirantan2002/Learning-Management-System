@@ -30,9 +30,7 @@ const Navbar = () => {
         </Link>
         {/* menu */}
         <div className="hidden md:flex items-center gap-5">
-          <div
-            className={`space-x-12 ${montserrat.className} text-white/80`}
-          >
+          <div className={`space-x-12 ${montserrat.className} text-white/80`}>
             <Link
               href="/"
               className="hover:text-white transition-colors duration-200 ease-in-out"
