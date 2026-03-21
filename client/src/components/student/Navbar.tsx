@@ -16,7 +16,7 @@ const Navbar = () => {
   const { updateRoleToEducator } = useAppContext();
 
   return (
-    <div className="relative mx-4 md:mx-16 my-6 md:my-8 bg-transparent">
+    <div className="relative px-5 sm:px-10 lg:px-16 my-6 md:my-8 bg-transparent">
       <div className="flex items-center justify-between px-4 sm:px-10 md:px-12 lg:px-16 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-[0_10px_40px_rgba(168,85,254,0.08)]">
         {/* brand */}
         <Link href="/" className="flex items-center gap-2.5 group">

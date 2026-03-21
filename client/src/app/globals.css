@@ -14,3 +14,29 @@ body {
     rgba(0, 0, 0, 0)
   );
 }
+
+/* ── Testimonial infinite-scroll animations ── */
+@keyframes scroll-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+@keyframes scroll-down {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+@keyframes sparkle-rotate {
+  from { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.15); }
+  to   { transform: rotate(360deg) scale(1); }
+}
+@keyframes pill-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.animate-scroll-up   { animation: scroll-up   28s linear infinite; }
+.animate-scroll-down { animation: scroll-down 34s linear infinite; }
+.animate-scroll-up:hover,
+.animate-scroll-down:hover { animation-play-state: paused; }
+.animate-sparkle     { animation: sparkle-rotate 7s linear infinite; }
+.animate-pill-pulse  { animation: pill-pulse 2s ease-in-out infinite; }

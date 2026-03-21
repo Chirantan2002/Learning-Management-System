@@ -1,106 +1,67 @@
 "use client";
 
-import { useRef } from "react";
-
+/* ─────────────────────────── data ─────────────────────────── */
 const stories = [
   {
     name: "Sarah Johnson",
     role: "UI/UX Designer at CreativeHub",
-    avatar: "SJ",
+    av: "SJ",
     color: "#a855f7",
     title: "From Beginner to UI/UX Designer in 6 Months",
-    message:
-      "The platform's hands-on approach and expert feedback helped me land my first job as a UI/UX designer. Life-changing!",
-    stars: 5,
+    body: "The platform's hands-on approach and expert feedback helped me land my first job as a UI/UX designer. Life-changing!",
   },
   {
     name: "Marcus Lee",
     role: "Full-Stack Dev at TechFlow",
-    avatar: "ML",
+    av: "ML",
     color: "#ec4899",
     title: "Went from zero to deployed in 90 days",
-    message:
-      "I had no coding background. Now I've shipped two real apps. The structured path and mentor reviews made all the difference.",
-    stars: 5,
+    body: "I had no coding background. Now I've shipped two real apps. The structured path and mentor reviews made all the difference.",
   },
   {
     name: "Priya Desai",
     role: "Data Analyst at Numera",
-    avatar: "PD",
+    av: "PD",
     color: "#06b6d4",
     title: "Cracked my dream data role!",
-    message:
-      "The projects were industry-grade. I walked into interviews confident, cleared every round, and got multiple offers.",
-    stars: 5,
+    body: "The projects were industry-grade. I walked into interviews confident, cleared every round, and got multiple offers.",
   },
   {
     name: "James Okoro",
     role: "Product Manager at NovaBuild",
-    avatar: "JO",
+    av: "JO",
     color: "#f59e0b",
-    title: "Finally understood how to build products people love",
-    message:
-      "The community, the mentors, the curriculum — everything clicked. I transitioned from engineering to PM in 4 months.",
-    stars: 5,
+    title: "Engineering to PM in 4 months",
+    body: "The community, the mentors, the curriculum — everything clicked. Best career decision I ever made.",
   },
   {
     name: "Aisha Nkrumah",
     role: "Freelance Brand Designer",
-    avatar: "AN",
+    av: "AN",
     color: "#10b981",
-    title: "Tripled my freelance rates after this course",
-    message:
-      "My portfolio went from a basic Behance page to a client-magnet. The feedback loops here are unmatched.",
-    stars: 5,
+    title: "Tripled my freelance rates",
+    body: "My portfolio went from a basic Behance page to a client magnet. The feedback loops here are unmatched.",
   },
   {
     name: "Carlos Rivera",
     role: "React Dev at Lumen Labs",
-    avatar: "CR",
+    av: "CR",
     color: "#8b5cf6",
     title: "React finally made sense — and I got hired",
-    message:
-      "I tried 3 other courses before this one. None of them explained the 'why'. This one did, and it stuck.",
-    stars: 5,
-  },
-  {
-    name: "Yuki Tanaka",
-    role: "Motion Designer at Orbit",
-    avatar: "YT",
-    color: "#f43f5e",
-    title: "Motion design skills that impressed on day one",
-    message:
-      "The live critiques pushed me harder than any bootcamp. I joined mid-year and got placed before the cohort even ended.",
-    stars: 5,
-  },
-  {
-    name: "Noah Williams",
-    role: "Cloud Eng. at SkyArch",
-    avatar: "NW",
-    color: "#0ea5e9",
-    title: "AWS certified in 60 days with this platform",
-    message:
-      "Real hands-on labs, not just theory. Every module felt like actual work experience. I passed my cert on the first try.",
-    stars: 5,
+    body: "Three failed courses before this one. None explained the 'why'. This one did, and it stuck.",
   },
 ];
 
-/* Split into two columns */
-const col1 = stories.slice(0, 4);
-const col2 = stories.slice(4, 8);
+/* duplicate for seamless infinite loop */
+const col1 = [...stories.slice(0, 3), ...stories.slice(0, 3)];
+const col2 = [...stories.slice(3), ...stories.slice(3)];
 
-function StarRow({ count }: { count: number }) {
+/* ─────────────────────────── sub-components ─────────────────────────── */
+function Stars() {
   return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: count }).map((_, i) => (
-        <svg
-          key={i}
-          className="success-star"
-          width="12"
-          height="12"
-          viewBox="0 0 24 24"
-          fill="#f59e0b"
-        >
+    <div className="flex gap-0.5 mb-2">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <svg key={i} width="10" height="10" viewBox="0 0 24 24" fill="#f59e0b">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
       ))}
@@ -108,407 +69,162 @@ function StarRow({ count }: { count: number }) {
   );
 }
 
-function StoryCard({ card }: { card: (typeof stories)[0] }) {
+function Card({ s }: { s: (typeof stories)[0] }) {
   return (
-    <div className="success-card">
-      <div className="success-card-inner">
-        <div className="success-card-header">
-          <div
-            className="success-avatar"
-            style={{ background: `${card.color}22`, border: `1.5px solid ${card.color}55` }}
-          >
-            <span style={{ color: card.color }}>{card.avatar}</span>
-          </div>
-          <div className="success-card-meta">
-            <p className="success-card-name">{card.name}</p>
-            <p className="success-card-role">{card.role}</p>
-          </div>
+    <div
+      className="
+        rounded-xl border border-white/10 bg-white/[0.05] p-3 w-full
+        transition-all duration-300
+        hover:bg-white/[0.09] hover:border-purple-500/40
+        hover:shadow-[0_4px_24px_rgba(168,85,247,0.13)]
+        hover:-translate-y-0.5 cursor-default
+      "
+    >
+      {/* header row */}
+      <div className="flex items-center gap-2 mb-2">
+        <div
+          className="h-7 w-7 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0"
+          style={{
+            background: `${s.color}22`,
+            border: `1.5px solid ${s.color}55`,
+            color: s.color,
+          }}
+        >
+          {s.av}
         </div>
-        <StarRow count={card.stars} />
-        <p className="success-card-title">&ldquo;{card.title}&rdquo;</p>
-        <p className="success-card-message">{card.message}</p>
+        <div className="min-w-0">
+          <p className="text-[11px] font-semibold text-white/90 truncate leading-none">{s.name}</p>
+          <p className="text-[9.5px] text-white/40 truncate mt-0.5">{s.role}</p>
+        </div>
       </div>
+      <Stars />
+      <p className="text-[10.5px] font-semibold text-white/80 leading-snug mb-1">{s.title}</p>
+      <p className="text-[10px] leading-relaxed text-white/50">"{s.body}"</p>
     </div>
   );
 }
 
-function ScrollColumn({
-  cards,
-  direction,
-}: {
-  cards: (typeof stories)[0][];
-  direction: "up" | "down";
-}) {
-  const duplicated = [...cards, ...cards];
-  return (
-    <div className="success-col-mask">
-      <div className={`success-col success-col--${direction}`}>
-        {duplicated.map((card, i) => (
-          <StoryCard key={i} card={card} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* Sparkle SVG */
-function Sparkle({ size = 28, style }: { size?: number; style?: React.CSSProperties }) {
+function Sparkle({ size, style }: { size: number; style: React.CSSProperties }) {
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="none"
-      style={style}
-      className="success-sparkle"
+      fill="white"
+      className="absolute pointer-events-none opacity-60 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"
+      style={{ animation: "sparkle-rotate 7s linear infinite", ...style }}
     >
-      <path
-        d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z"
-        fill="white"
-        fillOpacity="0.7"
-      />
+      <path d="M12 2L13.5 10.5L22 12L13.5 13.5L12 22L10.5 13.5L2 12L10.5 10.5Z" />
     </svg>
   );
 }
 
+/* ─────────────────────────── main section ─────────────────────────── */
 export default function SuccessStories() {
   return (
-    <section className="success-section">
-      <style>{`
-        /* ─── Section ─── */
-        .success-section {
-          background: #0f0e11;
-          padding: 80px 24px;
-          overflow: hidden;
-        }
-        .success-wrapper {
-          max-width: 1200px;
-          margin: 0 auto;
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 28px;
-          background: rgba(255,255,255,0.03);
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          min-height: 560px;
-          overflow: hidden;
-          position: relative;
-        }
-        @media (max-width: 900px) {
-          .success-wrapper { grid-template-columns: 1fr; }
-        }
+    <section className="bg-[#0f0e11] px-5 sm:px-10 lg:px-16 py-12">
+      {/*
+        Grid: 1 col on mobile → 2 cols on lg+
+        Fixed height on lg (420px) so both columns are always equal.
+      */}
+      <div className="mx-auto max-w-5xl rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden grid grid-cols-1 lg:grid-cols-[44%_56%] lg:h-[420px]">
 
-        /* ─── Left Panel ─── */
-        .success-left {
-          position: relative;
-          padding: 52px 48px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          z-index: 1;
-        }
-        .success-glow-1 {
-          position: absolute;
-          top: -80px;
-          left: -80px;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: rgba(168,85,247,0.18);
-          filter: blur(60px);
-          pointer-events: none;
-          animation: pulse-glow 4s ease-in-out infinite alternate;
-        }
-        .success-glow-2 {
-          position: absolute;
-          bottom: -80px;
-          right: 40px;
-          width: 200px;
-          height: 200px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.04);
-          filter: blur(50px);
-          pointer-events: none;
-        }
-        @keyframes pulse-glow {
-          from { opacity: 0.7; transform: scale(1); }
-          to   { opacity: 1;   transform: scale(1.08); }
-        }
+        {/* ─── LEFT PANEL ─── */}
+        <div className="relative flex flex-col justify-center gap-0 px-8 py-10 lg:py-0 overflow-hidden">
 
-        /* Pill */
-        .success-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          border: 1px solid rgba(255,255,255,0.10);
-          background: rgba(255,255,255,0.05);
-          border-radius: 999px;
-          padding: 6px 14px;
-          font-size: 11px;
-          font-weight: 600;
-          color: rgba(255,255,255,0.65);
-          width: fit-content;
-          margin-bottom: 20px;
-        }
-        .success-pill-dot {
-          width: 6px; height: 6px;
-          border-radius: 50%;
-          background: #a855f7;
-          animation: dot-blink 1.6s ease-in-out infinite;
-        }
-        @keyframes dot-blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.3; }
-        }
+          {/* blob glow */}
+          <div
+            className="absolute -top-20 -left-20 w-60 h-60 rounded-full bg-purple-500/15 blur-3xl pointer-events-none"
+            style={{ animation: "pill-pulse 4s ease-in-out infinite" }}
+          />
+          <div className="absolute bottom-0 -right-8 w-44 h-44 rounded-full bg-white/[0.03] blur-3xl pointer-events-none" />
 
-        /* Heading */
-        .success-heading {
-          font-size: clamp(26px, 4vw, 42px);
-          font-weight: 800;
-          color: #fff;
-          line-height: 1.2;
-          letter-spacing: -0.02em;
-          margin: 0 0 16px;
-        }
-        .success-heading span {
-          background: linear-gradient(90deg, #a855f7, #ec4899);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
+          {/* sparkles */}
+          <Sparkle size={18} style={{ top: 18, left: 18 }} />
+          <Sparkle size={11} style={{ bottom: 28, right: 56, animationDuration: "9s" }} />
 
-        .success-subtext {
-          color: rgba(255,255,255,0.5);
-          font-size: 14px;
-          line-height: 1.7;
-          max-width: 360px;
-          margin: 0 0 32px;
-        }
-
-        /* Stats row */
-        .success-stats {
-          display: flex;
-          gap: 28px;
-          flex-wrap: wrap;
-        }
-        .success-stat {
-          display: flex;
-          flex-direction: column;
-        }
-        .success-stat-num {
-          font-size: 22px;
-          font-weight: 800;
-          color: #fff;
-          line-height: 1;
-        }
-        .success-stat-label {
-          font-size: 11px;
-          color: rgba(255,255,255,0.45);
-          margin-top: 3px;
-        }
-
-        /* Sparkle */
-        .success-sparkle {
-          position: absolute;
-          pointer-events: none;
-          filter: drop-shadow(0 0 6px rgba(255,255,255,0.5));
-          animation: sparkle-spin 6s linear infinite;
-        }
-        .success-sparkle-1 { top: 24px; left: 24px; }
-        .success-sparkle-2 { bottom: 40px; left: 60%; }
-        @keyframes sparkle-spin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-
-        /* ─── Right Panel ─── */
-        .success-right {
-          position: relative;
-          overflow: hidden;
-          background: rgba(0,0,0,0.2);
-          border-left: 1px solid rgba(255,255,255,0.07);
-          padding: 0;
-        }
-        .success-right-inner {
-          display: flex;
-          gap: 12px;
-          padding: 20px 16px;
-          height: 100%;
-          min-height: 560px;
-        }
-
-        /* Fade masks top/bottom */
-        .success-right::before,
-        .success-right::after {
-          content: '';
-          position: absolute;
-          left: 0; right: 0;
-          height: 80px;
-          z-index: 10;
-          pointer-events: none;
-        }
-        .success-right::before {
-          top: 0;
-          background: linear-gradient(to bottom, #0f0e11 0%, transparent 100%);
-        }
-        .success-right::after {
-          bottom: 0;
-          background: linear-gradient(to top, #0f0e11 0%, transparent 100%);
-        }
-
-        /* ─── Scroll Columns ─── */
-        .success-col-mask {
-          flex: 1;
-          overflow: hidden;
-          position: relative;
-        }
-        .success-col {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          will-change: transform;
-        }
-        .success-col--up {
-          animation: scroll-up 28s linear infinite;
-        }
-        .success-col--down {
-          animation: scroll-down 32s linear infinite;
-        }
-        .success-col--up:hover,
-        .success-col--down:hover {
-          animation-play-state: paused;
-        }
-        @keyframes scroll-up {
-          from { transform: translateY(0); }
-          to   { transform: translateY(-50%); }
-        }
-        @keyframes scroll-down {
-          from { transform: translateY(-50%); }
-          to   { transform: translateY(0); }
-        }
-
-        /* ─── Story Card ─── */
-        .success-card {
-          border-radius: 14px;
-          border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(255,255,255,0.04);
-          padding: 14px;
-          cursor: default;
-          transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-          backdrop-filter: blur(10px);
-        }
-        .success-card:hover {
-          transform: translateY(-2px) scale(1.015);
-          background: rgba(255,255,255,0.07);
-          border-color: rgba(168,85,247,0.3);
-          box-shadow: 0 8px 32px rgba(168,85,247,0.12), 0 0 0 1px rgba(168,85,247,0.08);
-        }
-        .success-card-inner { display: flex; flex-direction: column; gap: 8px; }
-        .success-card-header { display: flex; align-items: center; gap: 10px; }
-
-        .success-avatar {
-          width: 34px; height: 34px;
-          border-radius: 50%;
-          display: flex; align-items: center; justify-content: center;
-          font-size: 11px; font-weight: 700;
-          flex-shrink: 0;
-        }
-        .success-card-meta { min-width: 0; }
-        .success-card-name {
-          font-size: 12px; font-weight: 700;
-          color: rgba(255,255,255,0.9);
-          margin: 0;
-          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
-        .success-card-role {
-          font-size: 10.5px;
-          color: rgba(255,255,255,0.4);
-          margin: 0;
-          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
-        .success-star { filter: drop-shadow(0 0 3px #f59e0b88); }
-        .success-card-title {
-          font-size: 11.5px; font-weight: 700;
-          color: rgba(255,255,255,0.85);
-          margin: 0;
-          line-height: 1.4;
-        }
-        .success-card-message {
-          font-size: 11px;
-          color: rgba(255,255,255,0.52);
-          margin: 0;
-          line-height: 1.6;
-        }
-
-        /* ─── Life-changing badge ─── */
-        .success-badge {
-          position: absolute;
-          top: 18px;
-          right: 18px;
-          z-index: 12;
-          border: 1px solid rgba(255,255,255,0.10);
-          background: rgba(255,255,255,0.06);
-          border-radius: 8px;
-          padding: 5px 10px;
-          font-size: 10.5px;
-          font-weight: 700;
-          color: rgba(255,255,255,0.7);
-          backdrop-filter: blur(8px);
-          letter-spacing: 0.02em;
-          animation: badge-float 3s ease-in-out infinite;
-        }
-        @keyframes badge-float {
-          0%, 100% { transform: translateY(0); }
-          50%       { transform: translateY(-4px); }
-        }
-      `}</style>
-
-      <div className="success-wrapper">
-        {/* ── Left ── */}
-        <div className="success-left">
-          <div className="success-glow-1" />
-          <div className="success-glow-2" />
-          <Sparkle size={20} style={{ top: 24, left: 24 } as React.CSSProperties} />
-          <Sparkle size={14} style={{ bottom: 52, right: 80, animationDuration: "9s" } as React.CSSProperties} />
-
-          <div className="success-pill">
-            <span className="success-pill-dot" />
+          {/* pill badge */}
+          <span className="inline-flex items-center gap-1.5 self-start border border-white/10 bg-white/[0.06] rounded-full px-3 py-1 text-[11px] font-semibold text-white/60 mb-4">
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-purple-500"
+              style={{ animation: "pill-pulse 1.8s ease-in-out infinite" }}
+            />
             What Our Learners Say
-          </div>
+          </span>
 
-          <h2 className="success-heading">
+          {/* heading */}
+          <h2 className="text-2xl sm:text-3xl font-extrabold leading-[1.2] tracking-tight text-white mb-3">
             Success Stories from Our{" "}
-            <span>Growing Community</span>
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Growing Community
+            </span>
           </h2>
 
-          <p className="success-subtext">
+          {/* subtitle */}
+          <p className="text-sm text-white/50 leading-relaxed max-w-[300px]">
             Hear from learners who transformed their careers through our platform.
             Real experiences, real impact, real growth.
           </p>
+        </div>
 
-          <div className="success-stats">
-            <div className="success-stat">
-              <span className="success-stat-num">12k+</span>
-              <span className="success-stat-label">Learners placed</span>
+        {/* ─── RIGHT PANEL ─── */}
+        {/*
+          On mobile: fixed h-[380px]
+          On desktop: fills the 420px grid height (h-full)
+        */}
+        <div className="relative border-t border-white/[0.07] lg:border-t-0 lg:border-l lg:border-white/[0.07] bg-black/20 h-[380px] lg:h-full overflow-hidden">
+
+          {/* fade masks top / bottom */}
+          <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-[#0e0d10] to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#0e0d10] to-transparent z-10 pointer-events-none" />
+
+          {/* floating badge */}
+          <div className="absolute top-3 right-3 z-20 border border-white/10 bg-white/[0.07] backdrop-blur-sm rounded-lg px-2.5 py-1 text-[10px] font-bold text-white/70 tracking-wide">
+            Life-changing! 🚀
+          </div>
+
+          {/* two scrolling columns */}
+          <div className="flex gap-2.5 px-3 py-3 h-full">
+
+            {/* col 1 — scroll UP */}
+            <div className="flex-1 overflow-hidden min-w-0">
+              <div
+                style={{ animation: "scroll-up 24s linear infinite" }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "paused")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "running")
+                }
+                className="flex flex-col gap-2.5"
+              >
+                {col1.map((s, i) => (
+                  <Card key={i} s={s} />
+                ))}
+              </div>
             </div>
-            <div className="success-stat">
-              <span className="success-stat-num">94%</span>
-              <span className="success-stat-label">Job success rate</span>
+
+            {/* col 2 — scroll DOWN */}
+            <div className="flex-1 overflow-hidden min-w-0">
+              <div
+                style={{ animation: "scroll-down 30s linear infinite" }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "paused")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "running")
+                }
+                className="flex flex-col gap-2.5"
+              >
+                {col2.map((s, i) => (
+                  <Card key={i} s={s} />
+                ))}
+              </div>
             </div>
-            <div className="success-stat">
-              <span className="success-stat-num">4.9★</span>
-              <span className="success-stat-label">Avg. rating</span>
-            </div>
+
           </div>
         </div>
 
-        {/* ── Right ── */}
-        <div className="success-right">
-          <div className="success-badge">Life-changing! 🚀</div>
-          <div className="success-right-inner">
-            <ScrollColumn cards={col1} direction="up" />
-            <ScrollColumn cards={col2} direction="down" />
-          </div>
-        </div>
       </div>
     </section>
   );
