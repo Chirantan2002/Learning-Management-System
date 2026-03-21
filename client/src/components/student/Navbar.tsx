@@ -27,7 +27,7 @@ const Navbar = () => {
           <span
             className={`${montserrat.className} text-white font-semibold tracking-wide group-hover:text-white transition-colors`}
           >
-            LMS
+            EduNova
           </span>
         </Link>
         {/* menu */}

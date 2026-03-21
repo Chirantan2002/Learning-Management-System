@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <p className="text-white font-semibold text-lg">LMS</p>
+            <p className="text-white font-semibold text-lg">EduNova</p>
             <p className="text-white/60 text-sm mt-2 max-w-sm">
               Learn faster with project-first courses and a modern learning
               experience.
@@ -69,10 +69,9 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} Learning Management System. All rights
-            reserved.
+            Copyright © {new Date().getFullYear()} EduNova. All rights reserved.
           </p>
-          <p className="text-white/50 text-sm">Built with Next.js + Tailwind</p>
+          <p className="text-white/50 text-sm">Built with Next.js, Tailwind, and lots of ❤️</p>
         </div>
       </div>
     </footer>

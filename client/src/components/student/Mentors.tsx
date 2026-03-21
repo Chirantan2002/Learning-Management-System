@@ -12,7 +12,7 @@ type Mentor = {
 
 const mentors: Mentor[] = [
   {
-    name: "Jessica Miller",
+    name: "John Miller",
     role: "UI/UX Design & Research",
     img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=500&fit=crop&crop=face",
     featured: true,
@@ -74,7 +74,7 @@ export default function Mentors() {
             <div
               key={m.name}
               className={[
-                "rounded-2xl border border-white/10 overflow-hidden",
+                "group rounded-2xl border border-white/10 overflow-hidden",
                 m.featured ? "bg-[#d8b4fe]/15" : "bg-white/5",
               ].join(" ")}
             >
@@ -83,8 +83,8 @@ export default function Mentors() {
                   src={m.img}
                   alt={m.name}
                   className={[
-                    "h-full w-full object-cover",
-                    m.featured ? "" : "grayscale",
+                    "h-full w-full object-cover transition ease-in-out duration-300",
+                    m.featured ? "" : "grayscale group-hover:grayscale-0",
                   ].join(" ")}
                   loading="lazy"
                 />
