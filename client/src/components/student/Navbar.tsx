@@ -16,8 +16,9 @@ const Navbar = () => {
   const { updateRoleToEducator } = useAppContext();
 
   return (
-    <div className="relative px-5 sm:px-10 lg:px-16 my-6 md:my-8 bg-transparent">
-      <div className="flex items-center justify-between px-4 sm:px-10 md:px-12 lg:px-16 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-[0_10px_40px_rgba(168,85,254,0.08)]">
+    <div className="relative px-6 sm:px-12 lg:px-20 my-6 md:my-8 bg-transparent">
+      <div className="max-w-7xl mx-auto">
+      <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-[0_10px_40px_rgba(168,85,254,0.08)]">
         {/* brand */}
         <Link href="/" className="flex items-center gap-2.5 group">
           <span className="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-[#a855fe]/35 to-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
@@ -107,6 +108,7 @@ const Navbar = () => {
             />
           </button>
         </div>
+      </div>
       </div>
 
       {/* Mobile Dropdown Menu */}

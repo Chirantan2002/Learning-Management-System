@@ -71,15 +71,7 @@ function Stars() {
 
 function Card({ s }: { s: (typeof stories)[0] }) {
   return (
-    <div
-      className="
-        rounded-xl border border-white/10 bg-white/[0.05] p-3 w-full
-        transition-all duration-300
-        hover:bg-white/[0.09] hover:border-purple-500/40
-        hover:shadow-[0_4px_24px_rgba(168,85,247,0.13)]
-        hover:-translate-y-0.5 cursor-default
-      "
-    >
+    <div className="rounded-xl border border-white/10 bg-white/[0.05] p-3 w-full transition-all duration-300 hover:bg-white/[0.09] hover:border-purple-500/40 hover:shadow-[0_4px_24px_rgba(168,85,247,0.13)] hover:-translate-y-0.5 cursor-default">
       {/* header row */}
       <div className="flex items-center gap-2 mb-2">
         <div
