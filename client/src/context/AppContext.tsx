@@ -19,7 +19,8 @@ export const AppContextProvider = ({ children }: Props) => {
   const { getToken } = useAuth();
   const { user } = useUser();
 
-  const backendUrl = "https://learning-backend-five.vercel.app";
+  const backendUrl =
+    process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000";
 
   const updateRoleToEducator = async () => {
     try {

@@ -4,7 +4,7 @@ import cors from "cors";
 import connectDB from "./configs/mongodb.js";
 import { clerkWebhook } from "./controllers/webhook.js";
 import educatorRouter from "./routes/educatorRoutes.js";
-import { clerkMiddleware } from "@clerk/express";
+import { clerkMiddleware, requireAuth } from "@clerk/express";
 
 const PORT = process.env.PORT || 4000;
 
@@ -13,7 +13,9 @@ const app = express();
 
 // MIDDLEWARE
 app.use(cors());
-app.use(clerkMiddleware());
+app.use(clerkMiddleware({
+  secretKey: process.env.CLERK_SECRET_KEY
+}));
 
 // ROUTES
 app.post("/clerk", express.raw({ type: "*/*" }), clerkWebhook);
