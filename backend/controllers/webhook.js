@@ -38,7 +38,6 @@ export const clerkWebhook = async (req, res) => {
 
       case "user.updated": {
         const userData = {
-          _id: data.id,
           name,
           email,
           imageUrl: data.image_url || "",
