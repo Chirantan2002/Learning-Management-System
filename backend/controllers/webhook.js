@@ -24,7 +24,18 @@ export const clerkWebhook = async (req, res) => {
     const name = `${data.first_name || ""} ${data.last_name || ""}`.trim();
 
     switch (type) {
-      case "user.created":
+      case "user.created": {
+        const userData = {
+          _id: data.id,
+          name,
+          email,
+          imageUrl: data.image_url || "",
+        };
+
+        await User.create(userData);
+        return res.status(200).json({ success: true });
+      }
+      
       case "user.updated": {
         const userData = {
           _id: data.id,
