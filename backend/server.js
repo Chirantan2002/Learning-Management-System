@@ -23,7 +23,7 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Server is running fine" });
 });
 
-app.post("/clerk", express.raw({ type: "application/json" }), clerkWebhook);
+app.post("/clerk", express.raw({ type: "*/*" }), clerkWebhook);
 
 // CONNECT DB
 try {
