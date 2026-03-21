@@ -12,7 +12,7 @@ export const clerkWebhook = async (req, res) => {
 
     const payload = req.body.toString();
 
-    await whook.verify(JSON.stringify(payload), {
+    await whook.verify(payload, {
       "svix-id": req.headers["svix-id"],
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
@@ -35,7 +35,7 @@ export const clerkWebhook = async (req, res) => {
         await User.create(userData);
         return res.status(200).json({ success: true });
       }
-      
+
       case "user.updated": {
         const userData = {
           _id: data.id,
