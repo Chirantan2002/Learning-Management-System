@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Montserrat } from "next/font/google";
 import { SignOutButton, useClerk, UserButton, useUser } from "@clerk/nextjs";
 import { TbSparkles } from "react-icons/tb";
+import { useAppContext } from "@/context/AppContext";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -12,6 +13,7 @@ const Navbar = () => {
 
   const { openSignIn } = useClerk();
   const { user } = useUser();
+  const { updateRoleToEducator } = useAppContext();
 
   return (
     <div className="relative mx-4 md:mx-16 my-6 md:my-8 bg-transparent">
@@ -144,10 +146,16 @@ const Navbar = () => {
                 <Link
                   href="/student/my-enrollments"
                   onClick={() => setMenuOpen(false)}
-                  className="bg-white/5 border border-white/10 px-4 py-2 rounded-xl cursor-pointer font-semibold text-white/90"
+                  className="bg-white/5 border border-white/10 px-4 py-2 rounded-xl cursor-pointer font-semibold text-center text-white/90"
                 >
                   My Courses
                 </Link>
+                <button
+                  onClick={updateRoleToEducator}
+                  className="bg-white/5 border border-white/10 px-4 py-2 rounded-xl cursor-pointer font-semibold text-white/90"
+                >
+                  Become Educator
+                </button>
                 <SignOutButton redirectUrl="/">
                   <button className="bg-[#a855fe] px-4 py-2 rounded-xl cursor-pointer font-semibold">
                     Sign Out

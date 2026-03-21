@@ -19,7 +19,7 @@ const Page = () => {
     <div className="min-h-screen">
       {!isEducatorRoute && <Navbar />}
       <Hero />
-      <TapeIcons />
+      {/* <TapeIcons /> */}
       <LearningJourney />
       <DiscoverPopular />
       <SuccessStories />
