@@ -34,7 +34,7 @@ export default function LearningJourney() {
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <Pill>What Makes Us Different</Pill>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-serif">
+          <h2 className="mt-4 text-4xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-serif">
             Why Choose Us?
             <br />
             The Learning Platform Built for Your Success
@@ -72,14 +72,13 @@ export default function LearningJourney() {
 
         <div className="mt-16 text-center">
           <Pill>Your Learning Journey</Pill>
-          <h3 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-serif">
+          <h3 className="mt-4 text-4xl md:text-5xl  font-extrabold tracking-tight text-white font-serif">
             From Beginner to Pro: Your Step-by-Step
             <br />
-            Roadmap to Success
+            <span className={`text-[#a855fe]`}>Roadmap to Success</span>
           </h3>
         </div>
       </div>
     </section>
   );
 }
-

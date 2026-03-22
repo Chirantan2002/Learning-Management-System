@@ -20,8 +20,8 @@ export default function FeaturedCourses() {
               <span className="text-[#a855fe]">ship real projects</span>
             </h2>
             <p className="mt-2 text-white/60 max-w-2xl">
-              Handpicked courses from mentors. Search, filter, and start learning
-              today.
+              Handpicked courses from mentors. Search, filter, and start
+              learning today.
             </p>
           </div>
 
@@ -42,4 +42,3 @@ export default function FeaturedCourses() {
     </section>
   );
 }
-
