@@ -1,5 +1,9 @@
 "use client";
 
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({ subsets: ["latin"] });
+
 /* ─────────────────────────── data ─────────────────────────── */
 const stories = [
   {
@@ -85,18 +89,28 @@ function Card({ s }: { s: (typeof stories)[0] }) {
           {s.av}
         </div>
         <div className="min-w-0">
-          <p className="text-[11px] font-semibold text-white/90 truncate leading-none">{s.name}</p>
+          <p className="text-[11px] font-semibold text-white/90 truncate leading-none">
+            {s.name}
+          </p>
           <p className="text-[9.5px] text-white/40 truncate mt-0.5">{s.role}</p>
         </div>
       </div>
       <Stars />
-      <p className="text-[10.5px] font-semibold text-white/80 leading-snug mb-1">{s.title}</p>
+      <p className="text-[10.5px] font-semibold text-white/80 leading-snug mb-1">
+        {s.title}
+      </p>
       <p className="text-[10px] leading-relaxed text-white/50">"{s.body}"</p>
     </div>
   );
 }
 
-function Sparkle({ size, style }: { size: number; style: React.CSSProperties }) {
+function Sparkle({
+  size,
+  style,
+}: {
+  size: number;
+  style: React.CSSProperties;
+}) {
   return (
     <svg
       width={size}
@@ -120,10 +134,8 @@ export default function SuccessStories() {
         Fixed height on lg (420px) so both columns are always equal.
       */}
       <div className="mx-auto max-w-5xl rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden grid grid-cols-1 lg:grid-cols-[44%_56%] lg:h-[420px]">
-
         {/* ─── LEFT PANEL ─── */}
         <div className="relative flex flex-col justify-center gap-0 px-8 py-10 lg:py-0 overflow-hidden">
-
           {/* blob glow */}
           <div
             className="absolute -top-20 -left-20 w-60 h-60 rounded-full bg-purple-500/15 blur-3xl pointer-events-none"
@@ -133,29 +145,38 @@ export default function SuccessStories() {
 
           {/* sparkles */}
           <Sparkle size={18} style={{ top: 18, left: 18 }} />
-          <Sparkle size={11} style={{ bottom: 28, right: 56, animationDuration: "9s" }} />
+          <Sparkle
+            size={11}
+            style={{ bottom: 28, right: 56, animationDuration: "9s" }}
+          />
 
           {/* pill badge */}
           <span className="inline-flex items-center gap-1.5 self-start border border-white/10 bg-white/[0.06] rounded-full px-3 py-1 text-[11px] font-semibold text-white/60 mb-4">
             <span
-              className="w-1.5 h-1.5 rounded-full bg-purple-500"
+              className={`${montserrat.className} w-1.5 h-1.5 rounded-full bg-purple-500`}
               style={{ animation: "pill-pulse 1.8s ease-in-out infinite" }}
             />
             What Our Learners Say
           </span>
 
           {/* heading */}
-          <h2 className="text-2xl sm:text-3xl font-extrabold leading-[1.2] tracking-tight text-white mb-3">
+          <h2
+            className={`font-serif text-4xl md:text-4xl font-extrabold leading-[1.2] tracking-tight text-white mb-3`}
+          >
             Success Stories from Our{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span
+              className={`${montserrat.className} bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent`}
+            >
               Growing Community
             </span>
           </h2>
 
           {/* subtitle */}
-          <p className="text-sm text-white/50 leading-relaxed max-w-[300px]">
-            Hear from learners who transformed their careers through our platform.
-            Real experiences, real impact, real growth.
+          <p
+            className={`${montserrat.className} text-sm text-white/50 leading-relaxed max-w-[300px]`}
+          >
+            Hear from learners who transformed their careers through our
+            platform. Real experiences, real impact, real growth.
           </p>
         </div>
 
@@ -165,7 +186,6 @@ export default function SuccessStories() {
           On desktop: fills the 420px grid height (h-full)
         */}
         <div className="relative border-t border-white/[0.07] lg:border-t-0 lg:border-l lg:border-white/[0.07] bg-black/20 h-[380px] lg:h-full overflow-hidden">
-
           {/* fade masks top / bottom */}
           <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-[#0e0d10] to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#0e0d10] to-transparent z-10 pointer-events-none" />
@@ -177,16 +197,19 @@ export default function SuccessStories() {
 
           {/* two scrolling columns */}
           <div className="flex gap-2.5 px-3 py-3 h-full">
-
             {/* col 1 — scroll UP */}
             <div className="flex-1 overflow-hidden min-w-0">
               <div
                 style={{ animation: "scroll-up 24s linear infinite" }}
                 onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "paused")
+                  ((
+                    e.currentTarget as HTMLDivElement
+                  ).style.animationPlayState = "paused")
                 }
                 onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "running")
+                  ((
+                    e.currentTarget as HTMLDivElement
+                  ).style.animationPlayState = "running")
                 }
                 className="flex flex-col gap-2.5"
               >
@@ -201,10 +224,14 @@ export default function SuccessStories() {
               <div
                 style={{ animation: "scroll-down 30s linear infinite" }}
                 onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "paused")
+                  ((
+                    e.currentTarget as HTMLDivElement
+                  ).style.animationPlayState = "paused")
                 }
                 onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.animationPlayState = "running")
+                  ((
+                    e.currentTarget as HTMLDivElement
+                  ).style.animationPlayState = "running")
                 }
                 className="flex flex-col gap-2.5"
               >
@@ -213,10 +240,8 @@ export default function SuccessStories() {
                 ))}
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );

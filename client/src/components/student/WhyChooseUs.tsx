@@ -1,6 +1,11 @@
 "use client";
 
-import { TbSparkles, TbDeviceLaptop, TbCertificate, TbUsers } from "react-icons/tb";
+import {
+  TbSparkles,
+  TbDeviceLaptop,
+  TbCertificate,
+  TbUsers,
+} from "react-icons/tb";
 
 const items = [
   {
@@ -69,4 +74,3 @@ export default function WhyChooseUs() {
     </section>
   );
 }
-

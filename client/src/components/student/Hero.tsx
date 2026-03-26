@@ -133,7 +133,7 @@ const Hero = () => {
 
           <TbNorthStar
             size={100}
-            className="absolute opacity-40 bottom-0 left-30 -rotate-65 text-gray-600"
+            className="absolute opacity-40 bottom-0 left-30 -rotate-120 text-gray-600"
           />
 
           {/* Image 1 — top right, orange shape */}
